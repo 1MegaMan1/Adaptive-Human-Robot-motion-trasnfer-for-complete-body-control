@@ -1,0 +1,32 @@
+<launch>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch"  />
+    <arg name="world_name" value="$(find kinect_v2)/nao.world"/>
+        <arg name="gui" default="true" />
+        <arg name="use_sim_time" value="true"/>
+
+  <arg name="version" default="V40" />
+  <include file="$(find kinect_v2)/launch/robot_state_publisher.launch">
+    <arg name="version" value="$(arg version)" />
+
+
+  </include>
+  <include file="$(find kinect_v2)/launch/nao_control_position.launch"/>
+  <arg name="use_pid" value="true"/>
+  <group if="$(arg use_pid)">
+    <rosparam file="$(find kinect_v2)/config/gazebo_ros_control_params.yaml" command="load"/>
+  </group> 
+
+
+  <rosparam param="source_list">[kin_joint_states]</rosparam>
+
+<node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" /> 
+
+<node name="socket_node" pkg="rosserial_server" type="socket_node" />
+
+<node name="show_joint" pkg="kinect_v2" type="show_joint" />
+
+<node name="spawn_nao" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -x 0 -y 0 -z .34 -model nao_V40" respawn="false" output="screen"/> 
+
+
+
+</launch>

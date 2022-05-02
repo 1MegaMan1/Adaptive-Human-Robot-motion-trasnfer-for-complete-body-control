@@ -1,0 +1,19 @@
+<launch>
+  <arg name="version" default="V40" />
+  <include file="$(find kinect_v2)/launch/robot_state_publisher.launch">
+    <arg name="version" value="$(arg version)" />
+
+  </include>
+  <arg name="gui" default="true" />
+  <param name="use_gui" value="$(arg gui)"/>
+  <rosparam param="source_list">[joint_states]</rosparam>
+  <param name="publish_frequency" type="double" value="10.0" />
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+
+<node name="socket_node" pkg="rosserial_server" type="socket_node" />
+
+<node name="show_joint" pkg="kinect_v2" type="show_joint" />
+<arg name="config_file" value="$(find kinect_v2)/config/urdf.rviz"/>
+
+<node name="$(anon rviz)" pkg="rviz" type="rviz" respawn="false" output="screen"args="-d $(arg config_file)" />
+</launch>

@@ -1,0 +1,15 @@
+# Hashes of file build rules.
+d92fc6dc84487869e550855804665ff7 /home/magni/catkin_ws/devel/include/kinect_v2/BodyJoints.h
+15d85052ac95401bde7d15441a34ce69 /home/magni/catkin_ws/devel/lib/python2.7/dist-packages/kinect_v2/msg/_BodyJoints.py
+4da864527ea06e26f7673e8a952c168a /home/magni/catkin_ws/devel/lib/python2.7/dist-packages/kinect_v2/msg/__init__.py
+603bcd9ee97aab0693f608189d657c58 /home/magni/catkin_ws/devel/share/common-lisp/ros/kinect_v2/msg/BodyJoints.lisp
+b5d074f63f1331aa6d15473d55a99fa1 /home/magni/catkin_ws/devel/share/gennodejs/ros/kinect_v2/msg/BodyJoints.js
+1ecbee5750d86f9d6a6acbbb01f93d20 /home/magni/catkin_ws/devel/share/roseus/ros/kinect_v2/manifest.l
+fba9483f9fbec370342a23a1bab059c0 /home/magni/catkin_ws/devel/share/roseus/ros/kinect_v2/msg/BodyJoints.l
+56901d2426b115f71fd896f18833c19e CMakeFiles/clean_test_results
+e5bf141ef3a70586cc1dcb13d33daed6 kinect_v2/CMakeFiles/_kinect_v2_generate_messages_check_deps_BodyJoints
+add8649943e47be25f672a67f956299d kinect_v2/CMakeFiles/kinect_v2_generate_messages_cpp
+add8649943e47be25f672a67f956299d kinect_v2/CMakeFiles/kinect_v2_generate_messages_eus
+add8649943e47be25f672a67f956299d kinect_v2/CMakeFiles/kinect_v2_generate_messages_lisp
+add8649943e47be25f672a67f956299d kinect_v2/CMakeFiles/kinect_v2_generate_messages_nodejs
+add8649943e47be25f672a67f956299d kinect_v2/CMakeFiles/kinect_v2_generate_messages_py
