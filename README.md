@@ -1,4 +1,4 @@
-# Adaptive Human-Robot motion transfer for complete body imitation
+# Human-Robot motion transfer for complete body imitation
 What does this repository do?
 
 When properly setup you can use your body motions to control a virtual NAO robot using rviz. Move your arm the virtual NAO will move its hand. Move your leg the NAO will mimic.
