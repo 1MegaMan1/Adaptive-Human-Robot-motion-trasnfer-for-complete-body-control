@@ -64,23 +64,37 @@ Joint::Joint() {}
 Joint::~Joint() {}
 void Joint::init_BodyVectors()
 {
-	Lhip_v 			= find_vector(Lhip,Rhip);					Rhip_v 			= find_vector(Rhip,Lhip); 
-	LupperLeg_v		= find_vector(Lknee,Lhip); 					RupperLeg_v 	= find_vector(Rknee,Rhip);
-	LlowerLeg_v		= find_vector(Lankle,Lknee); 				RlowerLeg_v 	= find_vector(Rankle,Rknee);
-	LupperArm_v		= find_vector(Lelbow,Lshoulder); 			RupperArm_v 	= find_vector(Relbow,Rshoulder);
-	LlowerArm_v 	= find_vector(Lhand,Lelbow); 				RlowerArm_v 	= find_vector(Rhand,Relbow); 
-	Uback_v			= find_vector(shoulder_spine,base_link);	Dback_v 		= find_vector(base_link,shoulder_spine); 
-	Lshoulder_v		= find_vector(Lshoulder,shoulder_spine);	Rshoulder_v		= find_vector(Rshoulder,shoulder_spine);
-	Lfoot_v			= find_vector(Lfoot,Lankle);				Rfoot_v			= find_vector(Rfoot,Rankle);
-	Lnaohip_v 		= find_Lnao_hip_v(); 						Rnaohip_v 		= find_Rnao_hip_v(); 
+	Lhip_v 			= find_vector(Lhip,Rhip);			
+	Rhip_v 			= find_vector(Rhip,Lhip); 
+	LupperLeg_v		= find_vector(Lknee,Lhip); 			
+	RupperLeg_v 		= find_vector(Rknee,Rhip);
+	LlowerLeg_v		= find_vector(Lankle,Lknee); 			
+	RlowerLeg_v 		= find_vector(Rankle,Rknee);
+	LupperArm_v		= find_vector(Lelbow,Lshoulder); 		
+	RupperArm_v 		= find_vector(Relbow,Rshoulder);
+	LlowerArm_v 		= find_vector(Lhand,Lelbow); 			
+	RlowerArm_v 		= find_vector(Rhand,Relbow); 
+	Uback_v			= find_vector(shoulder_spine,base_link);	
+	Dback_v 		= find_vector(base_link,shoulder_spine); 
+	Lshoulder_v		= find_vector(Lshoulder,shoulder_spine);	
+	Rshoulder_v		= find_vector(Rshoulder,shoulder_spine);
+	Lfoot_v			= find_vector(Lfoot,Lankle);			
+	Rfoot_v			= find_vector(Rfoot,Rankle);
+	Lnaohip_v 		= find_Lnao_hip_v(); 				
+	Rnaohip_v 		= find_Rnao_hip_v(); 
 }
 void Joint::init_OrthagonalVectors()
 {
-	LorthShoulderBack_v = get_2D_orthagonal_v(Lshoulder_v, LupperArm_v);RorthShoulderBack_v = get_2D_orthagonal_v(Rshoulder_v, RupperArm_v);
-	LhipXNaohip_v 		= Lnaohip_v.cross(Rhip_v.normalized()); 		RhipXNaohip_v 	 	= Rnaohip_v.cross(Lhip_v.normalized());
-	LlegNorm_v 			= find_best_normal(Lhip, Lknee, Lankle, Lfoot);	RlegNorm_v 			= find_best_normal(Rhip, Rknee, Rankle, Rfoot);
-	LlegNormXNaohip_v 	= Rnaohip_v.cross(LlegNorm_v);					RlegNormXNaohip_v 	= Lnaohip_v.cross(RlegNorm_v);//rototation 
-	LHipXNaohipXNaoHip_v = Lnaohip_v.cross(LhipXNaohip_v);				RHipXNaohipXNaoHip_v = Rnaohip_v.cross(RhipXNaohip_v);//reference
+	LorthShoulderBack_v = get_2D_orthagonal_v(Lshoulder_v, LupperArm_v);			
+	RorthShoulderBack_v = get_2D_orthagonal_v(Rshoulder_v, RupperArm_v);
+	LhipXNaohip_v 		= Lnaohip_v.cross(Rhip_v.normalized()); 			
+	RhipXNaohip_v  		= Rnaohip_v.cross(Lhip_v.normalized());
+	LlegNorm_v 		= find_best_normal(Lhip, Lknee, Lankle, Lfoot);			
+	RlegNorm_v 		= find_best_normal(Rhip, Rknee, Rankle, Rfoot);
+	LlegNormXNaohip_v 	= Rnaohip_v.cross(LlegNorm_v);					
+	RlegNormXNaohip_v 	= Lnaohip_v.cross(RlegNorm_v);//rototation 
+	LHipXNaohipXNaoHip_v 	= Lnaohip_v.cross(LhipXNaohip_v);				
+	RHipXNaohipXNaoHip_v 	= Rnaohip_v.cross(RhipXNaohip_v);//reference
 }
 double Joint::get_Lelbow_joint()
 {
@@ -154,26 +168,25 @@ void Joint::convert_Lleg_to_Lnao_leg()
 {
 	Lyaw = get_Lleg_yaw()*NEGATIVE;
 
- 	WtoLNaohipFrame	<< 	Lnaohip_v(0), LHipXNaohipXNaoHip_v(0), LhipXNaohip_v(0),
-			   	   		Lnaohip_v(1), LHipXNaohipXNaoHip_v(1), LhipXNaohip_v(1),
+ 	WtoLNaohipFrame	<< 		Lnaohip_v(0), LHipXNaohipXNaoHip_v(0), LhipXNaohip_v(0),
+			   	   	Lnaohip_v(1), LHipXNaohipXNaoHip_v(1), LhipXNaohip_v(1),
 			       		Lnaohip_v(2), LHipXNaohipXNaoHip_v(2), LhipXNaohip_v(2);
 
-
-    x_Lrot  <<  1 ,       0 ,        0 ,
+   	 x_Lrot  	<<  1 ,       0 ,        0 ,
 			    0 ,cos(Lyaw),-sin(Lyaw), 
 			    0 ,sin(Lyaw), cos(Lyaw); 
 		 		    
-	LNaoLeg_v = WtoLNaohipFrame * x_Lrot * WtoLNaohipFrame.transpose() * LupperLeg_v;// H*R*H^T*V;
+LNaoLeg_v = WtoLNaohipFrame * x_Lrot * WtoLNaohipFrame.transpose() * LupperLeg_v;// H*R*H^T*V;
 }
 void Joint::convert_Rleg_to_Rnao_leg()
 {
 	Ryaw = get_Rleg_yaw();
 
- 	WtoRNaohipFrame	<< 	Rnaohip_v(0), RHipXNaohipXNaoHip_v(0), RhipXNaohip_v(0),
-			   	   		Rnaohip_v(1), RHipXNaohipXNaoHip_v(1), RhipXNaohip_v(1),
+ 	WtoRNaohipFrame	<< 		Rnaohip_v(0), RHipXNaohipXNaoHip_v(0), RhipXNaohip_v(0),
+			   	   	Rnaohip_v(1), RHipXNaohipXNaoHip_v(1), RhipXNaohip_v(1),
 			       		Rnaohip_v(2), RHipXNaohipXNaoHip_v(2), RhipXNaohip_v(2);
-    x_Rrot  <<  1 ,       0 ,        0 ,
-			    0 ,cos(Ryaw),-sin(Ryaw), 
+   	 x_Rrot  	    <<  1 ,       0 ,        0 ,
+			    	0 ,cos(Ryaw),-sin(Ryaw), 
 				0 ,sin(Ryaw), cos(Ryaw); 
 		 		    
 	RNaoLeg_v = WtoRNaohipFrame * x_Rrot * WtoRNaohipFrame.transpose() * RupperLeg_v;// H*R*H^T*V;
